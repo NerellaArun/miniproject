@@ -1,12 +1,12 @@
 import java.awt.event.*;
 import javax.swing.*;
 
-class Qno4GUIform extends JFrame implements ActionListener {
+class VPR extends JFrame implements ActionListener {
     JTextField inputField;
     JLabel messageLabel, resultLabel;
     JButton checkPalindromeButton, reverseButton, findVowelsButton;
 
-    public Qno4GUIform() {
+    public VPR() {
         messageLabel = new JLabel("Input any string:");
         messageLabel.setBounds(20, 20, 150, 20);
         inputField = new JTextField(20);
@@ -83,6 +83,6 @@ class Qno4GUIform extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        new Qno4GUIform();
+        new VPR();
     }
 }
