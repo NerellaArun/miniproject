@@ -34,7 +34,7 @@ class VPR extends JFrame implements ActionListener {
         add(findVowelsButton);
         add(resultLabel);
 
-        setSize(600, 150);
+        setSize(550, 160);
         setLayout(null);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -42,13 +42,18 @@ class VPR extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String input = inputField.getText();
+        String input = inputField.getText().trim();
+        if (input.isEmpty()) {
+            resultLabel.setText("Please enter a string.");
+            return;
+        }
+
         String result = "";
 
         if (e.getSource() == checkPalindromeButton) {
-            result = isPalindrome(input) ? "Palindrome" : "Not Palindrome";
+            result = isPalindrome(input) ? "Result: Palindrome" : "Result: Not a Palindrome";
         } else if (e.getSource() == reverseButton) {
-            result = reverseString(input);
+            result = "Reversed: " + reverseString(input);
         } else if (e.getSource() == findVowelsButton) {
             result = findVowels(input);
         }
@@ -57,7 +62,6 @@ class VPR extends JFrame implements ActionListener {
     }
 
     private boolean isPalindrome(String str) {
-    	//StringBuilder object
         String reversed = new StringBuilder(str).reverse().toString();
         return str.equalsIgnoreCase(reversed);
     }
@@ -68,18 +72,12 @@ class VPR extends JFrame implements ActionListener {
 
     private String findVowels(String str) {
         StringBuilder vowels = new StringBuilder();
-        // iterates through each character in the input string 
-        //using a for-each loop
         for (char ch : str.toCharArray()) {
-        	//For each character, it checks if it is a vowel 
-        	//"AEIOUaeiou" using indexOf. If the index is not -1, 
-        	//it means the character is a vowel, 
-        	//and it is appended to the vowels StringBuilder.
             if ("AEIOUaeiou".indexOf(ch) != -1) {
                 vowels.append(ch);
             }
         }
-        return vowels.toString();
+        return "Vowels: " + vowels.toString() + " (Count: " + vowels.length() + ")";
     }
 
     public static void main(String[] args) {
